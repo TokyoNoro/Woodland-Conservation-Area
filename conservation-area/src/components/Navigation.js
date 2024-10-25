@@ -13,7 +13,7 @@ const Navigation = () => {
       <div className="flex items-center justify-between bg-green-800 text-white h-16 p-4">
         <div className="flex items-center">
           <img src={logo} alt="Logo" className="h-10 w-10 mr-2" />
-          <span className="text-xl font-semibold">Conservation Area</span>
+          <span className="text-xl font-semibold">Woodland Conservation Area</span>
         </div>
         <button onClick={toggleNav} className="text-white focus:outline-none mr-2 z-20">
           <svg
@@ -39,6 +39,7 @@ const Navigation = () => {
             <a href="#about" className="py-2 hover:bg-green-600">About</a>
             <a href="#gallery" className="py-2 hover:bg-green-600">Gallery</a>
             <a href="#ecosystem" className="py-2 hover:bg-green-600">Ecosystem</a>
+            <a href="#ecosystem" className="py-2 hover:bg-green-600">Site Map</a>
             <a href="#contact" className="py-2 hover:bg-green-600">Contact</a>
           </nav>
         </div>

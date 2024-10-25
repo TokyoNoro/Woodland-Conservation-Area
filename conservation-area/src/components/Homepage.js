@@ -8,7 +8,7 @@ const Homepage = () => {
       style={{ backgroundImage: `url(${background})` }}
     >
       <div className="text-center text-white">
-        <h1 className="text-6xl font-bold mb-4">Welcome to the Conservation Area</h1>
+        <h1 className="text-6xl font-bold mb-4">Welcome to Woodland Conservation Area</h1>
         <p className="text-2xl">Explore the beauty and wonder of nature at our conservation area.</p>
       </div>
     </div>
