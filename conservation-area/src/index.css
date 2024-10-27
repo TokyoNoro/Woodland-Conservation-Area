@@ -2,15 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Calibri', sans-serif;
+  line-height: 1.5;
+  color: #555; /* Adjust color to ensure medium/bright contrast */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  display: block;
+  text-decoration: none;
+  overflow-wrap: break-word; /* Ensures no word-breaking over lines */
 }
