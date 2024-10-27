@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Homepage from './components/Homepage';
 import About from './components/About';
-import SiteMap from './components/SiteMap';
+import SiteMap from './components/Sitemap';
 
 function App() {
   const [dark, setDark] = useState(false);
