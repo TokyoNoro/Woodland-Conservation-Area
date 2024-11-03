@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation'; // Importing Navigation component
 import Homepage from './components/Homepage'; // Importing Homepage component
 import About from './components/About'; // Importing About component
-import SiteMap from './components/SiteMap'; // Importing SiteMap component
+import SiteMap from './components/Sitemap'; // Importing SiteMap component
 
 // App component definition
 function App() {
