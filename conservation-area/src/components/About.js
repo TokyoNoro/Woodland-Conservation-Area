@@ -1,3 +1,6 @@
+//Author: Marko Ostrovitsa (A00448932)
+//Purpose: The purpose of this file is to display the about section of the website
+
 import React, { useRef, useState } from 'react';
 import outlookImage from '../assets/outlook.jpg'; // Make sure to replace with your actual image path
 import { IoVolumeHigh, IoVolumeOff } from 'react-icons/io5'; // Import icons for the button

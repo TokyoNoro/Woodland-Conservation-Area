@@ -1,3 +1,6 @@
+//Author: Marko Ostrovitsa (A00448932)
+//Purpose: The purpose of this file is to create a navigation bar that is flexible between desktop and mobile versions
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png'; // Importing the logo image
