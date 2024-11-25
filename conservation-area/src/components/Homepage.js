@@ -1,3 +1,6 @@
+//Author: Marko Ostrovitsa (A00448932)
+//Purpose: The purpose of this file is to display the homepage of the website
+
 import React from 'react'; 
 import dayBackground from '../assets/forest1.png'; // Import the daytime background image
 import nightBackground from '../assets/nightforest.png'; // Import the nighttime background image

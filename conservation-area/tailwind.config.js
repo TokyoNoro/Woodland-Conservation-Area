@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         darkBlue: '#001f3f',
         darkerBlue: '#00122a',
+        darkBrown: '#4B2E16', // Define a custom dark brown color
       },
     },
   },
@@ -19,5 +20,3 @@ module.exports = {
   plugins: [],
   darkMode: 'class',
 };
-
-
