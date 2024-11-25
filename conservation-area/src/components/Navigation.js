@@ -15,7 +15,7 @@ const Navigation = ({ toggleDarkMode, dark }) => {
   return (
     <div>
       {/* Main navigation bar */}
-      <div className={`flex items-center justify-between transition-colors duration-300 ${dark ? 'bg-darkerBlue' : 'bg-green-800'} text-white h-16 p-4`}>
+      <div className={`flex items-center justify-between transition-colors duration-300 ${dark ? 'bg-darkerBlue' : 'bg-orange-950'} text-white h-16 p-4`}>
         <div className="flex items-center">
           {/* Logo section */}
           <img src={logo} alt="Logo" className="h-16 w-16 mr-2" />
@@ -51,7 +51,7 @@ const Navigation = ({ toggleDarkMode, dark }) => {
         </div>
       </div>
       {/* Mobile navigation menu */}
-      <div className={`md:hidden absolute top-0 right-0 transition-colors duration-300 ${dark ? 'bg-darkerBlue' : 'bg-green-800'} bg-opacity-50 backdrop-blur-md text-white w-64 h-screen p-4 z-10 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`md:hidden absolute top-0 right-0 transition-colors duration-300 ${dark ? 'bg-darkerBlue' : 'bg-orange-950'} bg-opacity-50 backdrop-blur-md text-white w-64 h-screen p-4 z-10 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <nav className="flex flex-col items-center mt-16 text-lg">
           <Link to="/" className="py-2 transition-colors duration-500 ease-in-out hover:bg-yellow-400 w-full text-center rounded-lg hover:rounded-xl">Homepage</Link>
           <Link to="/about" className="py-2 transition-colors duration-500 ease-in-out hover:bg-yellow-400 w-full text-center rounded-lg hover:rounded-xl">About</Link>
