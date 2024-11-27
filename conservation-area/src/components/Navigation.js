@@ -59,12 +59,12 @@ const Navigation = ({ toggleDarkMode, dark }) => {
           <Link to="/" className="py-2 transition-colors duration-500 ease-in-out hover:bg-yellow-400 w-full text-center rounded-lg hover:rounded-xl">Homepage</Link>
           <Link to="/about" className="py-2 transition-colors duration-500 ease-in-out hover:bg-yellow-400 w-full text-center rounded-lg hover:rounded-xl">About</Link>
           <Link to="/sitemap" className="py-2 transition-colors duration-500 ease-in-out hover:bg-yellow-400 w-full text-center rounded-lg hover:rounded-xl">Site Map</Link>
-          <Link to="#gallery" className="py-2 transition-colors duration-500 ease-in-out hover:bg-yellow-400 w-full text-center rounded-lg hover:rounded-xl">Gallery</Link>
+          <Link to="/gallery" className="py-2 transition-colors duration-500 ease-in-out hover:bg-yellow-400 w-full text-center rounded-lg hover:rounded-xl">Gallery</Link>
           <Link to="#ecosystem" className="py-2 transition-colors duration-500 ease-in-out hover:bg-yellow-400 w-full text-center rounded-lg hover:rounded-xl">Ecosystem</Link>
           <Link to="#flora" className="py-2 transition-colors duration-500 ease-in-out hover:bg-yellow-400 w-full text-center rounded-lg hover:rounded-xl">Flora/Fauna/Fungi</Link>
           <Link to="#natural-burial" className="py-2 transition-colors duration-500 ease-in-out hover:bg-yellow-400 w-full text-center rounded-lg hover:rounded-xl">Natural Burial</Link>
           <Link to="#ecommerce" className="py-2 transition-colors duration-500 ease-in-out hover:bg-yellow-400 w-full text-center rounded-lg hover:rounded-xl">eCommerce</Link>
-          <Link to="#contact" className="py-2 transition-colors duration-500 ease-in-out hover:bg-yellow-400 w-full text-center rounded-lg hover:rounded-xl">Contact</Link>
+          <Link to="contact" className="py-2 transition-colors duration-500 ease-in-out hover:bg-yellow-400 w-full text-center rounded-lg hover:rounded-xl">Contact</Link>
         </nav>
       </div>
     </div>
