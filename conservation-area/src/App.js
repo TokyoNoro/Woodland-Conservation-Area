@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navigation from './components/Navigation'; // Importing Navigation component
-import Homepage from './components/Homepage'; // Importing Homepage component
-import About from './components/About'; // Importing About component
-import SiteMap from './components/Sitemap'; // Importing SiteMap component
+import Navigation from './components/Navigation';
+import Homepage from './components/Homepage';
+import About from './components/About';
+import SiteMap from './components/Sitemap';
+import Contact from './components/Contact'; // Importing Contact component
 
 // App component definition
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/" element={<Homepage dark={dark} />} /> {/* Route for Homepage component */}
           <Route path="/about" element={<About />} /> {/* Route for About component */}
           <Route path="/sitemap" element={<SiteMap />} /> {/* Route for SiteMap component */}
+          <Route path="/contact" element={<Contact />} /> {/* Route for Contact component */}
         </Routes>
       </div>
     </Router>
