@@ -33,7 +33,7 @@ const Navigation = ({ toggleDarkMode, dark }) => {
           <Link to="#flora" className="py-2 px-4 transition-colors duration-500 ease-in-out hover:bg-yellow-400 rounded-lg">Flora/Fauna/Fungi</Link>
           <Link to="#natural-burial" className="py-2 px-4 transition-colors duration-500 ease-in-out hover:bg-yellow-400 rounded-lg">Natural Burial</Link>
           <Link to="#ecommerce" className="py-2 px-4 transition-colors duration-500 ease-in-out hover:bg-yellow-400 rounded-lg">eCommerce</Link>
-          <Link to="#contact" className="py-2 px-4 transition-colors duration-500 ease-in-out hover:bg-yellow-400 rounded-lg">Contact</Link>
+          <Link to="contact" className="py-2 px-4 transition-colors duration-500 ease-in-out hover:bg-yellow-400 rounded-lg">Contact</Link>
         </div>
         {/* Dark mode toggle button for desktop view */}
         <div className="hidden md:flex items-center ml-4">
