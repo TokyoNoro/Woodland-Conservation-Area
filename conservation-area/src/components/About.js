@@ -1,3 +1,6 @@
+// Author: Lakshay Bansal (A00467478)
+// Purpose: To display the About section of the Woodland Conservation website
+
 import React, { useRef, useState } from "react";
 import outlookImage from "../assets/outlook.jpg"; // Replace with your actual image path
 import { IoVolumeHigh, IoVolumeOff } from "react-icons/io5";
