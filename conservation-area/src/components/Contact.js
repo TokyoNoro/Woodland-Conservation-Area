@@ -1,124 +1,139 @@
-// Author: Lakshay Bansal (A00467478)
-// Purpose: To display the Contact section of the Woodland Conservation website
+import React from 'react';
+import { IoVolumeHigh } from 'react-icons/io5'; // Importing volume icon
 
-import React from "react";
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+// Contact component definition
+const Contact = ({ dark }) => {
+  // Function to handle text-to-speech
+  const speak = (text) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    const voices = speechSynthesis.getVoices();
+    // Select a female voice (you may need to change the index depending on the available voices)
+    utterance.voice = voices.find(voice => voice.name.includes('Female')) || voices.find(voice => voice.gender === 'female');
+    utterance.rate = 0.9; // Slowing down the speech rate for a softer effect
+    utterance.pitch = 0.8; // Lowering the pitch for a softer voice
+    speechSynthesis.speak(utterance); // Speak the text
+  };
 
-const Contact = () => {
   return (
-    <div
-      id="contact"
-      className="p-8 bg-gradient-to-br from-green-300 to-green-500 dark:from-green-800 dark:to-green-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col items-center"
-    >
-      {/* Section Title */}
-      <h1 className="text-5xl font-bold mb-6 text-center">Get in Touch</h1>
-      <p className="text-lg text-center mb-8 max-w-2xl">
-        Have questions, feedback, or just want to say hello? We'd love to hear from you! Fill out the form below or connect with us through our social channels.
+    <div className="p-8 bg-white text-gray-900 dark:text-gray-100 min-h-screen flex flex-col items-center"> {/* Main container with white background */}
+      <h1 className="text-5xl font-bold mb-4 text-center">Contact Us</h1> {/* Page title */}
+      <p className="text-2xl mb-8 text-center max-w-3xl"> {/* Introductory text */}
+        Thank you for visiting our website. If you have any questions regarding the conservation area, please fill out this form, and we will get back to you as soon as possible.
       </p>
-
-      {/* Contact Form */}
-      <div className="bg-white dark:bg-darkerBlue rounded-lg shadow-lg p-6 md:p-10 max-w-4xl w-full">
-        <form>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            {/* Name Input */}
-            <div>
-              <label htmlFor="name" className="block text-lg font-medium mb-2">
-                Name
-              </label>
+      <form className="w-full max-w-3xl p-8 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg text-lg"> {/* Form container */}
+        <div className="flex flex-wrap -mx-3 mb-16"> {/* Container for the name and phone number fields */}
+          <div className="w-full md:w-1/2 px-3 mb-16 md:mb-0"> {/* Name field container */}
+            <label className="block text-2xl font-bold mb-4" htmlFor="name"> {/* Name field label */}
+              Name <span className="text-red-500">*</span> {/* Required field indicator */}
+            </label>
+            <div className="flex items-center"> {/* Container for the name input and speaker button */}
               <input
+                className="w-full p-4 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 text-xl"
                 type="text"
                 id="name"
-                placeholder="Your Name"
-                className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                name="name"
               />
+              <button 
+                type="button" 
+                onClick={() => speak('Please enter a name')}
+                className="ml-4 text-4xl text-black dark:text-yellow-500"
+              >
+                <IoVolumeHigh />
+              </button> {/* Text-to-speech button for the name field */}
             </div>
-
-            {/* Email Input */}
-            <div>
-              <label htmlFor="email" className="block text-lg font-medium mb-2">
-                Email
-              </label>
+          </div>
+          <div className="w-full md:w-1/2 px-3"> {/* Phone number field container */}
+            <label className="block text-2xl font-bold mb-4" htmlFor="phone"> {/* Phone number field label */}
+              Phone Number <span className="text-red-500">*</span> {/* Required field indicator */}
+            </label>
+            <div className="flex items-center"> {/* Container for the phone input and speaker button */}
               <input
+                className="w-full p-4 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 text-xl"
+                type="text"
+                id="phone"
+                name="phone"
+              />
+              <button 
+                type="button" 
+                onClick={() => speak('Please enter a phone number')}
+                className="ml-4 text-4xl text-black dark:text-yellow-500"
+              >
+                <IoVolumeHigh />
+              </button> {/* Text-to-speech button for the phone field */}
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-wrap -mx-3 mb-16"> {/* Container for the email and subject fields */}
+          <div className="w-full md:w-1/2 px-3 mb-16 md:mb-0"> {/* Email field container */}
+            <label className="block text-2xl font-bold mb-4" htmlFor="email"> {/* Email field label */}
+              Email <span className="text-red-500">*</span> {/* Required field indicator */}
+            </label>
+            <div className="flex items-center"> {/* Container for the email input and speaker button */}
+              <input
+                className="w-full p-4 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 text-xl"
                 type="email"
                 id="email"
-                placeholder="Your Email"
-                className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                name="email"
               />
+              <button 
+                type="button" 
+                onClick={() => speak('Please enter an email')}
+                className="ml-4 text-4xl text-black dark:text-yellow-500"
+              >
+                <IoVolumeHigh />
+              </button> {/* Text-to-speech button for the email field */}
             </div>
           </div>
-
-          {/* Message Input */}
-          <div className="mb-6">
-            <label htmlFor="message" className="block text-lg font-medium mb-2">
-              Message
+          <div className="w-full md:w-1/2 px-3 mt-6 md:mt-0"> {/* Subject field container */}
+            <label className="block text-2xl font-bold mb-4" htmlFor="subject"> {/* Subject field label */}
+              Subject <span className="text-red-500">*</span> {/* Required field indicator */}
             </label>
+            <div className="flex items-center"> {/* Container for the subject input and speaker button */}
+              <input
+                className="w-full p-4 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 text-xl"
+                type="text"
+                id="subject"
+                name="subject"
+              />
+              <button 
+                type="button" 
+                onClick={() => speak('Please enter a subject')}
+                className="ml-4 text-4xl text-black dark:text-yellow-500"
+              >
+                <IoVolumeHigh />
+              </button> {/* Text-to-speech button for the subject field */}
+            </div>
+          </div>
+        </div>
+        <div className="mb-16 px-3"> {/* Container for the message field */}
+          <label className="block text-2xl font-bold mb-4" htmlFor="message"> {/* Message field label */}
+            Message <span className="text-red-500">*</span> {/* Required field indicator */}
+          </label>
+          <div className="flex items-center"> {/* Container for the message textarea and speaker button */}
             <textarea
+              className="w-full p-4 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 text-xl"
               id="message"
+              name="message"
               rows="5"
-              placeholder="Your Message"
-              className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
             ></textarea>
+            <button 
+              type="button" 
+              onClick={() => speak('Please enter a message')}
+              className="ml-4 text-4xl text-black dark:text-yellow-500"
+            >
+              <IoVolumeHigh />
+            </button> {/* Text-to-speech button for the message field */}
           </div>
-
-          {/* Submit Button */}
+        </div>
+        <div className="flex justify-center">
           <button
+            className="bg-yellow-400 text-gray-900 dark:bg-yellow-500 dark:text-gray-100 rounded-lg p-4 text-2xl w-full md:w-1/2"
             type="submit"
-            className="w-full bg-green-600 hover:bg-green-700 text-white text-lg font-bold py-3 px-6 rounded-md transition-all duration-300"
           >
-            Send Message
-          </button>
-        </form>
-      </div>
-
-      {/* Contact Information */}
-      <div className="mt-12 text-center">
-        <h2 className="text-3xl font-bold mb-4">Contact Information</h2>
-        <div className="flex flex-col md:flex-row justify-center items-center gap-6">
-          <div className="flex items-center gap-4">
-            <FaPhone className="text-2xl text-green-800 dark:text-green-400" />
-            <p className="text-lg">+1 (123) 456-7890</p>
-          </div>
-          <div className="flex items-center gap-4">
-            <FaEnvelope className="text-2xl text-green-800 dark:text-green-400" />
-            <p className="text-lg">info@woodlandconservation.ca</p>
-          </div>
-          <div className="flex items-center gap-4">
-            <FaMapMarkerAlt className="text-2xl text-green-800 dark:text-green-400" />
-            <p className="text-lg">Halifax, Nova Scotia</p>
-          </div>
+            Send
+          </button> {/* Submit button */}
         </div>
-      </div>
-
-      {/* Social Media Links */}
-      <div className="mt-8">
-        <h3 className="text-2xl font-bold mb-4">Follow Us</h3>
-        <div className="flex justify-center gap-6">
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-green-800 dark:text-green-400 text-3xl hover:scale-110 transition-transform"
-          >
-            <FaFacebook />
-          </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-green-800 dark:text-green-400 text-3xl hover:scale-110 transition-transform"
-          >
-            <FaInstagram />
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-green-800 dark:text-green-400 text-3xl hover:scale-110 transition-transform"
-          >
-            <FaTwitter />
-          </a>
-        </div>
-      </div>
+      </form>
     </div>
   );
 };
