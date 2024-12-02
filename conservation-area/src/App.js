@@ -6,6 +6,7 @@ import About from './components/About'; // Importing About component
 import SiteMap from './components/Sitemap'; // Importing SiteMap component
 import Contact from './components/Contact';
 import Gallery from './components/gallery';
+import Flora from './components/flora';
 
 // App component definition
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/sitemap" element={<SiteMap />} /> {/* Route for SiteMap component */}
           <Route path="/contact" element={<Contact />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/flora" element={<Flora />} />
         </Routes>
       </div>
     </Router>
