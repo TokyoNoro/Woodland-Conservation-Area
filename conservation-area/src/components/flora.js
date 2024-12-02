@@ -1,6 +1,12 @@
-//Author Kunal Singla(A00461346)
-import React, { useState } from 'react'; 
-// Import React and the useState hook for managing state in the component.
+//Author Kunal Singla(A00461346), Cole Turner (A00469026)
+//Purpose: This file represents a componet to display flora fauna fungi
+
+import React, { useState } from 'react';
+import redMaple from '../assets/download-4.jpg';
+import mole from '../assets/download-5.jpg';
+import mushroom from '../assets/download-6.jpg';
+import birchImage from '../assets/download-7.jpg';
+import chipmunk from '../assets/download-8.jpg';
 
 // Sample data for Flora, Fauna, and Fungi
 const data = [
@@ -8,31 +14,31 @@ const data = [
     name: 'Red Maple', // Name of the item
     category: 'Flora', // Category to classify the item (Flora, Fauna, Fungi)
     description: 'A majestic tree known for its vibrant red leaves.', // Description of the item
-    image: '/assets/download-4.jpg', // Path to the image representing the item
+    image: redMaple, // Path to the image representing the item
   },
   {
     name: 'Star-nosed Mole',
     category: 'Fauna',
     description: 'An extraordinary mammal known for its unique star-shaped nose.',
-    image: '/assets/download-5.jpg',
+    image: mole,
   },
   {
     name: 'Golden Oyster Mushroom',
     category: 'Fungi',
     description: 'A bright yellow mushroom often found on decaying wood.',
-    image: '/assets/download-6.jpg',
+    image: mushroom,
   },
   {
     name: 'Birch Tree',
     category: 'Flora',
     description: 'A tree with striking white bark and vibrant leaves.',
-    image: '/assets/download-7.jpg',
+    image: birchImage,
   },
   {
     name: 'Eastern Chipmunk',
     category: 'Fauna',
     description: 'A small mammal with stripes and an energetic personality.',
-    image: '/assets/download-8.jpg',
+    image: chipmunk,
   },
 ];
 

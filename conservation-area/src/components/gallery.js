@@ -1,4 +1,6 @@
-//Author Kunal Singla(A00461346)
+// Author Kunal Singla(A00461346)
+// Purpose: This file represents the gallery component. 
+
 import React, { useState } from 'react';
 
 // Import images from the assets folder (replace with your actual paths)
