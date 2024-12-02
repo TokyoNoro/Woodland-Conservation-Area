@@ -8,15 +8,9 @@ import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
 const About = () => {
   const [isPaused, setIsPaused] = useState(false);
-  const [accordionState, setAccordionState] = useState({
-    floraFauna: false,
-    heritageLegacy: false,
-  });
-  const [showMoreMission, setShowMoreMission] = useState(false);
   const speechSynthesisRef = useRef(null);
   const textRef = useRef("");
 
-  // Handle text-to-speech
   const handleTextToSpeech = () => {
     if (speechSynthesisRef.current && !isPaused) {
       window.speechSynthesis.pause();
@@ -31,9 +25,16 @@ const About = () => {
         It represents a commitment to preserving biodiversity and fostering a connection between people and nature.
         Our mission is to protect, sustain, and inspire, ensuring that the woodland thrives for future generations.
       `;
+
       const utterance = new SpeechSynthesisUtterance(textRef.current);
+      const voices = speechSynthesis.getVoices();
+      utterance.voice = voices.find(voice => voice.name.includes('Female')) || voices.find(voice => voice.gender === 'female');
+      utterance.rate = 0.9; // Slowing down the speech rate for a softer effect
+      utterance.pitch = 1.4; // Lowering the pitch for a softer voice
+
       speechSynthesisRef.current = utterance;
       window.speechSynthesis.speak(utterance);
+
       utterance.onend = () => {
         speechSynthesisRef.current = null;
         setIsPaused(false);
@@ -43,6 +44,7 @@ const About = () => {
 
   // Toggle accordion state
   const toggleAccordion = (section) => {
+    // eslint-disable-next-line no-undef
     setAccordionState((prev) => ({
       ...prev,
       [section]: !prev[section],
@@ -51,120 +53,38 @@ const About = () => {
 
   return (
     <div className="p-8 bg-white dark:bg-darkerBlue text-gray-900 dark:text-gray-100 min-h-screen flex flex-col items-center">
-      {/* Header Section */}
-      <div className="flex items-center justify-center w-full mb-10">
-        <h1 className="text-5xl font-bold text-center flex-1">
-          About St. Margaret’s Bay Area Woodland Conservation Site
-        </h1>
-        <button
-          onClick={handleTextToSpeech}
+      <div className="flex items-center justify-center w-full">
+        <h1 className="text-5xl font-bold mb-4 text-center flex-1">About St. Margaret’s Bay Area Woodland Conservation Site</h1>
+        <button 
+          onClick={handleTextToSpeech} 
           className="ml-4 bg-yellow-400 text-gray-900 dark:bg-yellow-500 dark:text-gray-100 rounded-full p-5 focus:outline-none"
         >
-          {speechSynthesisRef.current && !isPaused ? (
-            <IoVolumeOff className="text-3xl" />
-          ) : (
-            <IoVolumeHigh className="text-3xl" />
-          )}
+          {speechSynthesisRef.current && !isPaused ? <IoVolumeOff className="text-3xl" /> : <IoVolumeHigh className="text-3xl" />}
         </button>
       </div>
-
-      {/* Hero Image */}
-      <div className="mb-10">
-        <img
-          src={outlookImage}
-          alt="Woodland Outlook"
-          className="w-full h-auto max-w-4xl rounded-lg shadow-lg transition-transform transform hover:scale-105"
-        />
-      </div>
-
-      {/* Accordion Section */}
-      <div className="w-full max-w-4xl mb-12">
-        <div className="mb-4">
-          <button
-            className="flex justify-between w-full p-4 bg-gray-100 dark:bg-gray-800 text-2xl font-semibold rounded-lg shadow-md focus:outline-none hover:bg-gray-200 dark:hover:bg-gray-700"
-            onClick={() => toggleAccordion("floraFauna")}
-          >
-            <span>Flora and Fauna</span>
-            {accordionState.floraFauna ? (
-              <AiOutlineMinus className="text-3xl" />
-            ) : (
-              <AiOutlinePlus className="text-3xl" />
-            )}
-          </button>
-          {accordionState.floraFauna && (
-            <div className="p-4 text-2xl bg-gray-50 dark:bg-gray-900 rounded-b-lg shadow-md">
-              <ul className="list-disc list-inside">
-                <li>
-                  Flora: Red Maple, Wild Carrot, Coltsfoot, Sheep Laurel, and
-                  Multiflora Rose.
-                </li>
-                <li>
-                  Fauna: Star-nose Mole and the Little Brown Bat, among
-                  others.
-                </li>
-              </ul>
-              <p className="mt-4">
-                Explore the unique diversity of life thriving in this woodland,
-                creating a harmonious balance of nature.
-              </p>
-            </div>
-          )}
+      <p className="mb-4 text-2xl text-center">
+        Nestled in the heart of Halifax, Nova Scotia, the St. Margaret’s Bay Area Woodland Conservation Site is a sanctuary of natural beauty and biodiversity. Spanning an impressive 200 acres, this conservation area is a verdant tapestry of towering trees, lush undergrowth, and vibrant wildlife.
+      </p>
+      <p className="mb-4 text-2xl text-center">
+        The woodland is home to a diverse range of flora and fauna, including the majestic Red Maple, the delicate Wild Carrot, and the robust Coltsfoot. The Sheep Laurel and Multiflora Rose add a splash of color to the landscape, while the Star-nose Mole and the Little Brown Bat represent some of the unique wildlife species that inhabit the area.
+      </p>
+      <p className="mb-4 text-2xl text-center">
+        The St. Margaret’s Bay Area Woodland Conservation Site is not just a haven for wildlife, but also a living testament to our natural heritage. It is a place where the past meets the present, where the whispering winds carry stories of times long gone, and where every leaf and stone is a piece of history waiting to be discovered.
+      </p>
+      <div className="flex flex-col md:flex-row items-center justify-between w-full">
+        <div className="md:w-1/2">
+          <h2 className="text-4xl font-bold mb-2 text-left">MISSION STATEMENT</h2>
+          <p className="mb-4 text-2xl text-left">
+            Our mission is to preserve and enhance the ecological integrity of the St. Margaret’s Bay Area Woodland Conservation Site. We are committed to protecting its diverse habitats, promoting sustainable use, and fostering an appreciation for our natural heritage through education and community engagement.
+          </p>
+          <h2 className="text-4xl font-bold mb-2 text-left">VISION</h2>
+          <p className="text-2xl text-left">
+            We envision the St. Margaret’s Bay Area Woodland Conservation Site as a thriving ecosystem, teeming with life and serving as a model for conservation efforts. We strive to create a space where nature can flourish, where future generations can experience the wonder of the woodland, and where the legacy of our natural heritage is safeguarded for years to come.
+          </p>
         </div>
-        <div className="mb-4">
-          <button
-            className="flex justify-between w-full p-4 bg-gray-100 dark:bg-gray-800 text-2xl font-semibold rounded-lg shadow-md focus:outline-none hover:bg-gray-200 dark:hover:bg-gray-700"
-            onClick={() => toggleAccordion("heritageLegacy")}
-          >
-            <span>Heritage and Legacy</span>
-            {accordionState.heritageLegacy ? (
-              <AiOutlineMinus className="text-3xl" />
-            ) : (
-              <AiOutlinePlus className="text-3xl" />
-            )}
-          </button>
-          {accordionState.heritageLegacy && (
-            <div className="p-4 text-2xl bg-gray-50 dark:bg-gray-900 rounded-b-lg shadow-md">
-              <p>
-                The woodland is a testament to the natural history of the
-                region. Each tree and stone carries stories of the past, adding
-                to the rich narrative of this thriving ecosystem.
-              </p>
-            </div>
-          )}
+        <div className="md:w-1/2 flex justify-center">
+          <img src={outlookImage} alt="Outlook" className="w-full h-auto max-w-2xl" />
         </div>
-      </div>
-
-      {/* Mission Section with "Learn More" Toggle */}
-      <div className="w-full max-w-4xl text-left">
-        <h2 className="text-4xl font-bold mb-4">Mission Statement</h2>
-        <p className="text-2xl leading-relaxed">
-          Our mission is to preserve and enhance the ecological integrity of
-          this woodland site.
-          {showMoreMission && (
-            <span>
-              {" "}
-              We aim to protect habitats, promote sustainable practices, and
-              foster a deep appreciation for our environment through education
-              and community engagement.
-            </span>
-          )}
-        </p>
-        <button
-          onClick={() => setShowMoreMission(!showMoreMission)}
-          className="mt-2 text-lg text-blue-600 dark:text-blue-400 hover:underline focus:outline-none"
-        >
-          {showMoreMission ? "Show Less" : "Learn More"}
-        </button>
-      </div>
-
-      {/* Vision Section */}
-      <div className="w-full max-w-4xl mt-12">
-        <h2 className="text-4xl font-bold mb-4">Vision</h2>
-        <p className="text-2xl leading-relaxed">
-          We envision a thriving ecosystem that serves as a beacon for
-          conservation efforts, inspiring future generations to cherish and
-          protect this natural treasure.
-        </p>
       </div>
     </div>
   );
