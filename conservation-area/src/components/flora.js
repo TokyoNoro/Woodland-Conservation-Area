@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import redMaple from '../assets/download-4.jpg';
+import mole from '../assets/download-5.jpg';
+import mushroom from '../assets/download-6.jpg';
 
 // Sample data for Flora, Fauna, and Fungi
 const data = [
@@ -6,19 +9,19 @@ const data = [
     name: 'Red Maple',
     category: 'Flora',
     description: 'A majestic tree known for its vibrant red leaves.',
-    image: '/assets/download-4.jpg', // Replace with actual image paths
+    image: redMaple, 
   },
   {
     name: 'Star-nosed Mole',
     category: 'Fauna',
     description: 'An extraordinary mammal known for its unique star-shaped nose.',
-    image: '/assets/download-5.jpg', // Replace with actual image paths
+    image: mole, 
   },
   {
     name: 'Golden Oyster Mushroom',
     category: 'Fungi',
     description: 'A bright yellow mushroom often found on decaying wood.',
-    image: '/assets/download-6.jpg', // Replace with actual image paths
+    image: mushroom, 
   },
 ];
 
