@@ -41,6 +41,7 @@ const About = () => {
 
   // Toggle accordion state
   const toggleAccordion = (section) => {
+    // eslint-disable-next-line no-undef
     setAccordionState((prev) => ({
       ...prev,
       [section]: !prev[section],
