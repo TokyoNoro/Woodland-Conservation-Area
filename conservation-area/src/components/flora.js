@@ -1,4 +1,5 @@
-//Author Kunal Singla(A00461346), Cole Turner (A00469026)
+//Author Kunal Singla(A00461346), Cole Turner (A00469026)/Author: Bahnu Prakash (A00468530)
+
 //Purpose: This file represents a componet to display flora fauna fungi
 
 import React, { useState } from 'react';
