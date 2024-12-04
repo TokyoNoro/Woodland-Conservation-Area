@@ -1,6 +1,6 @@
 // Authors:
-// Bhanu Prakash - Responsible for handling the 'Get Directions' functionality
-// Cole - Responsible for handling  map interaction
+// Bhanu Prakash(A00468530) - Responsible for handling the 'Get Directions' functionality
+// Cole(A00469026) - Responsible for handling  map interaction
 
 import React, { useState } from 'react';
 import { MapContainer, ImageOverlay, Marker, Popup } from 'react-leaflet';

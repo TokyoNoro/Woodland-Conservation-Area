@@ -1,4 +1,4 @@
-// Authors:
+// Authors:Lakshay Bansal (A00467478)
 // Prupose: This file represents an about component.  
 
 import React, { useRef, useState } from "react";

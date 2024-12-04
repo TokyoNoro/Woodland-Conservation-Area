@@ -1,4 +1,5 @@
 // Author Kunal Singla(A00461346)
+//Aouthor: Bahnu Prakash (A00468530)
 // Purpose: This file represents the gallery component. 
 
 import React, { useState } from 'react';

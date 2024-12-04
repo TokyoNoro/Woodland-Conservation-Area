@@ -1,5 +1,5 @@
-// Authors: 
-// Purpose:
+// Authors: bhanu prakash (A00468530)
+// Purpose: To use the API, but unable to figure out the distance calculations.
 
 import React, { useState } from 'react';
 
@@ -8,7 +8,7 @@ const SiteMap = () => {
   const [address, setAddress] = useState('');
   const [error, setError] = useState(null);
 
-  const handleSearch = async (event) => {
+  const handleSearch = async (event) => {Purpose: To use the API, but unable to figure out the distance calculations.
     const address = event.target.value;
     setAddress(address);
 
