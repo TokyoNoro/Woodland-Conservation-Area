@@ -1,133 +1,114 @@
-// Authors: Cole Turner (A00469026), 
-// Purpose: This file represents the site map component. 
+// Authors:
+// Bhanu Prakash - Responsible for handling the 'Get Directions' functionality
+// Cole - Responsible for handling  map interaction
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { MapContainer, ImageOverlay, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import rewildingBirch from '../assets/rewildingBirch222.jpg';
+import trailHead from '../assets/hiking.png';
+import farm from '../assets/farm.png';
+import well from '../assets/water-well.png';
+import sitting from '../assets/sitting.png';
+import birch from '../assets/birch.png';
 
 const SiteMap = () => {
-  const [location, setLocation] = useState("44.6488,-63.5752"); // Default to Halifax, NS
-  const [searchInput, setSearchInput] = useState("");
-  const [mapType, setMapType] = useState("roadmap");
-  const [error, setError] = useState(null); // For handling errors in geolocation or address lookup
+  // Default map bounds (size of the map)
+  const bounds = [
+    [0, 0],
+    [546, 648],
+  ];
 
-  // Google Maps Embed API Key from environment variable
-  const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+  // State to store user's location (null initially)
+  const [userLocation, setUserLocation] = useState(null);
 
-  // Google Maps Embed API URL
-  const googleMapsUrl = `https://www.google.com/maps/embed/v1/view?key=${apiKey}&center=${location}&zoom=14&maptype=${mapType}`;
+  // Default user location coordinates (hardcoded)
+  const defaultUserLocation = { lat: 44.623917, lng: -63.920472 };
 
-  // Handle search input
-  const handleSearchInput = (event) => {
-    setSearchInput(event.target.value);
+  // List of Points of Interest (POI) with their locations and icons
+  const pointsOfInterest = [
+    { id: 1, name: 'Trailhead', position: [540, 40], icon: trailHead, googlePosition: { lat: 44.625028, lng: -63.921417 } },
+    { id: 2, name: 'Farmhouse Foundation', position: [430, 200], icon: farm, googlePosition: { lat: 44.625833, lng: -63.920972 } },
+    { id: 3, name: 'Well', position: [485, 40], icon: well, googlePosition: { lat: 44.624022, lng: -63.920028 } },
+    { id: 4, name: 'Sitting Area', position: [360, 240], icon: sitting, googlePosition: { lat: 44.625028, lng: -63.920417 } },
+    { id: 5, name: 'Coastal Yellow Birch', position: [235, 465], icon: birch, googlePosition: { lat: 44.624000, lng: -63.920056 } }
+  ];
+
+  // Function to handle "Get Directions" button click
+  const handleGetDirectionsClick = (poi) => {
+    const destination = poi.googlePosition; // Get the coordinates of the selected POI
+
+    // Create a Google Maps URL with the origin (user's location) and the destination (POI's location)
+    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${defaultUserLocation.lat},${defaultUserLocation.lng}&destination=${destination.lat},${destination.lng}&travelmode=driving`;
+
+    // Open Google Maps in a new tab
+    window.open(googleMapsUrl, '_blank');
   };
 
-  // Update location based on user input
-  const handleSearch = () => {
-    if (searchInput.trim() !== "") {
-      setLocation(searchInput.trim());
-      setError(null);
-    } else {
-      setError("Please enter a valid location.");
-    }
-  };
-
-  // Fetch user's current location
-  const handleGetCurrentLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setLocation(`${latitude},${longitude}`);
-          setError(null);
-        },
-        (error) => {
-          console.error("Error fetching location:", error);
-          setError("Unable to fetch your current location. Please allow location access.");
-        }
-      );
-    } else {
-      setError("Geolocation is not supported by your browser.");
-    }
-  };
-
-  // Update map type
-  const handleMapTypeChange = (type) => {
-    setMapType(type);
+  // Function to simulate user's location on the map when the button is clicked
+  const handleUserLocation = () => {
+    setUserLocation([250, 250]); // Set fixed coordinates or dynamically based on the actual user location
   };
 
   return (
-    <div className="p-8 bg-gray-100 dark:bg-darkBlue text-gray-900 dark:text-gray-100 min-h-screen">
-      <h1 className="text-4xl font-bold mb-6 text-gray-800 dark:text-gray-200">Site Map</h1>
+    <div className="p-8 bg-lime-800 dark:bg-darkBlue text-gray-900 dark:text-gray-100 min-h-screen flex flex-col items-center justify-center">
+      <h1 className="text-3xl font-sans mb-4 text-white dark:text-gray-300">Woodland Conservation Area</h1>
 
-      {/* Search Section */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
-        <div className="flex flex-col sm:flex-row sm:items-center mb-4 sm:mb-0">
-          <input
-            type="text"
-            placeholder="Enter a location (latitude,longitude or address)"
-            value={searchInput}
-            onChange={handleSearchInput}
-            className="p-3 w-full sm:w-auto border border-gray-300 rounded-l-md focus:outline-none focus:ring focus:ring-green-400"
-          />
-          <button
-            onClick={handleSearch}
-            className="px-4 py-3 bg-green-500 text-white rounded-r-md hover:bg-green-600 transition duration-300"
+      {/* Button to simulate the user's location on the map */}
+      <button
+        onClick={handleUserLocation}
+        className="mb-4 px-4 py-2 bg-orange-900 text-white rounded hover:bg-orange-800"
+      >
+        YOU ARE HERE
+      </button>
+
+      <MapContainer
+        bounds={bounds}
+        style={{ height: '540px', width: '100%', maxWidth: '630px' }}
+        crs={L.CRS.Simple}
+        zoomControl={false}
+        scrollWheelZoom={false}
+        doubleClickZoom={false}
+        dragging={false}
+      >
+        {/* Image overlay for the map */}
+        <ImageOverlay url={rewildingBirch} bounds={bounds} />
+
+        {/* Render Points of Interest markers */}
+        {pointsOfInterest.map((poi) => (
+          <Marker key={poi.id} position={poi.position} icon={L.icon({ iconUrl: poi.icon, iconSize: [48, 48], iconAnchor: [24, 24], popupAnchor: [0, -10] })}>
+            <Popup direction="bottom">
+              <strong>{poi.name}</strong>
+              <br />
+              {/* Button to get directions to the POI */}
+              <button onClick={() => handleGetDirectionsClick(poi)} className="bg-blue-500 text-white px-2 py-1 rounded">Get Directions</button>
+            </Popup>
+          </Marker>
+        ))}
+
+        {/* User location marker (only visible when userLocation is set) */}
+        {userLocation && (
+          <Marker
+            position={userLocation}
+            icon={L.divIcon({ className: 'bg-red-600 p-2 rounded-full text-white', html: '🧍' })}
           >
-            Search
-          </button>
-        </div>
+            <Popup>
+              <strong>Your Location</strong>
+            </Popup>
+          </Marker>
+        )}
+      </MapContainer>
 
-        {/* Map Type Selector */}
-        <div className="flex space-x-4">
-          {["roadmap", "satellite", "terrain"].map((type) => (
-            <button
-              key={type}
-              onClick={() => handleMapTypeChange(type)}
-              className={`px-4 py-2 rounded-md ${
-                mapType === type ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800"
-              }`}
-            >
-              {type.charAt(0).toUpperCase() + type.slice(1)}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Current Location Button */}
-      <div className="mb-6">
-        <button
-          onClick={handleGetCurrentLocation}
-          className="px-6 py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300 shadow-md"
-        >
-          Use My Current Location
-        </button>
-      </div>
-
-      {/* Error Message */}
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-
-      {/* Map Display */}
-      <div className="relative mb-8">
-        <iframe
-          title="Google Map"
-          src={googleMapsUrl}
-          width="100%"
-          height="500"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-          className="rounded-lg shadow-lg"
-        ></iframe>
-      </div>
-
-      {/* Instructions */}
-      <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">How to Use This Map:</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700 dark:text-gray-300">
-          <li>Use the search bar above to enter a location (e.g., "44.6488,-63.5752" or "Halifax, NS").</li>
-          <li>Click "Use My Current Location" to display your real-time location on the map.</li>
-          <li>Switch between different map views (Roadmap, Satellite, or Terrain) using the buttons above.</li>
-          <li>Zoom in/out using the controls on the map.</li>
-        </ul>
+      {/* Instructions Section */}
+      <div className="mt-8 text-center text-white dark:text-gray-300">
+        <h2 className="text-2xl font-bold mb-2">Instructions</h2>
+        <p>
+          Click the "Get Directions" button on any marker to open Google Maps with directions to the selected point of interest.
+        </p>
+        <p className="mt-4">
+          You can also click "YOU ARE HERE" to simulate your location on the map.
+        </p>
       </div>
     </div>
   );
