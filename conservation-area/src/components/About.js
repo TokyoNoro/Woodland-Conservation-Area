@@ -1,3 +1,6 @@
+// Authors:
+// Prupose: This file represents an about component.  
+
 import React, { useRef, useState } from "react";
 import outlookImage from "../assets/outlook.jpg"; // Replace with your actual image path
 import { IoVolumeHigh, IoVolumeOff } from "react-icons/io5";

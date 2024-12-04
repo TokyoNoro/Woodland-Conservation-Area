@@ -1,3 +1,6 @@
+// Authors: Cole Turner (A00469026), 
+// Purpose: This file represents the site map component. 
+
 import React, { useState } from "react";
 
 const SiteMap = () => {
