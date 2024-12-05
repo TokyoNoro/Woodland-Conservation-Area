@@ -1,13 +1,12 @@
 // Author: Lakshay Bansal (A00467478)
 // Purpose: To display the Contact section of the Woodland Conservation website
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import { IoVolumeHigh } from "react-icons/io5";
 
 const Contact = () => {
   const [voices, setVoices] = useState([]);
-  const speechSynthesisRef = useRef(null);
 
   useEffect(() => {
     const loadVoices = () => {
