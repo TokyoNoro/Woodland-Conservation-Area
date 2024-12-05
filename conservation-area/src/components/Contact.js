@@ -1,10 +1,40 @@
 // Author: Lakshay Bansal (A00467478)
 // Purpose: To display the Contact section of the Woodland Conservation website
 
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { IoVolumeHigh } from "react-icons/io5";
 
 const Contact = () => {
+  const [voices, setVoices] = useState([]);
+  const speechSynthesisRef = useRef(null);
+
+  useEffect(() => {
+    const loadVoices = () => {
+      const voicesList = window.speechSynthesis.getVoices();
+      setVoices(voicesList);
+    };
+
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }, []);
+
+  const speakText = (text) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    
+    // Select a soft female voice
+    const selectedVoice = voices.find(voice => voice.name.includes("Female") && voice.lang === "en-US");
+    if (selectedVoice) {
+      utterance.voice = selectedVoice;
+    }
+    
+    // Adjust pitch and rate for a softer tone
+    utterance.pitch = 1.2; // Slightly higher pitch
+    utterance.rate = 0.9; // Slightly slower rate
+
+    window.speechSynthesis.speak(utterance);
+  };
+
   return (
     <div
       id="contact"
@@ -22,8 +52,14 @@ const Contact = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             {/* Name Input */}
             <div>
-              <label htmlFor="name" className="block text-lg font-medium mb-2">
+              <label htmlFor="name" className="block text-lg font-medium mb-2 flex items-center">
                 Name
+                <button
+                  onClick={() => speakText('Please enter a name')}
+                  className="ml-2 text-gray-900 dark:text-gray-100 focus:outline-none"
+                >
+                  <IoVolumeHigh className="text-2xl" />
+                </button>
               </label>
               <input
                 type="text"
@@ -35,8 +71,14 @@ const Contact = () => {
 
             {/* Email Input */}
             <div>
-              <label htmlFor="email" className="block text-lg font-medium mb-2">
+              <label htmlFor="email" className="block text-lg font-medium mb-2 flex items-center">
                 Email
+                <button
+                  onClick={() => speakText('Please enter an email')}
+                  className="ml-2 text-gray-900 dark:text-gray-100 focus:outline-none"
+                >
+                  <IoVolumeHigh className="text-2xl" />
+                </button>
               </label>
               <input
                 type="email"
@@ -49,8 +91,14 @@ const Contact = () => {
 
           {/* Message Input */}
           <div className="mb-6">
-            <label htmlFor="message" className="block text-lg font-medium mb-2">
+            <label htmlFor="message" className="block text-lg font-medium mb-2 flex items-center">
               Message
+              <button
+                onClick={() => speakText('Please enter a message')}
+                className="ml-2 text-gray-900 dark:text-gray-100 focus:outline-none"
+              >
+                <IoVolumeHigh className="text-2xl" />
+              </button>
             </label>
             <textarea
               id="message"
@@ -90,7 +138,7 @@ const Contact = () => {
       </div>
 
       {/* Social Media Links */}
-      <div className="mt-8">
+      <div className="mt-8 text-center">
         <h3 className="text-2xl font-bold mb-4">Follow Us</h3>
         <div className="flex justify-center gap-6">
           <a
