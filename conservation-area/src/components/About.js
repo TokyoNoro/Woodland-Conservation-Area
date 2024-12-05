@@ -1,7 +1,7 @@
 // Authors:Lakshay Bansal (A00467478)
 // Prupose: This file represents an about component.  
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import outlookImage from "../assets/outlook.jpg"; // Replace with your actual image path
 import { IoVolumeHigh, IoVolumeOff } from "react-icons/io5";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
@@ -13,8 +13,19 @@ const About = () => {
     heritageLegacy: false,
   });
   const [showMoreMission, setShowMoreMission] = useState(false);
+  const [voices, setVoices] = useState([]);
   const speechSynthesisRef = useRef(null);
   const textRef = useRef("");
+
+  useEffect(() => {
+    const loadVoices = () => {
+      const voicesList = window.speechSynthesis.getVoices();
+      setVoices(voicesList);
+    };
+    
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }, []);
 
   // Handle text-to-speech
   const handleTextToSpeech = () => {
@@ -32,6 +43,17 @@ const About = () => {
         Our mission is to protect, sustain, and inspire, ensuring that the woodland thrives for future generations.
       `;
       const utterance = new SpeechSynthesisUtterance(textRef.current);
+      
+      // Select a soft female voice
+      const selectedVoice = voices.find(voice => voice.name.includes("Female") && voice.lang === "en-US");
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
+      }
+      
+// Adjust pitch and rate for a softer tone
+ utterance.pitch = 1.4; // Slightly higher pitch
+  utterance.rate = 0.9; // Slightly slower rate
+
       speechSynthesisRef.current = utterance;
       window.speechSynthesis.speak(utterance);
       utterance.onend = () => {
@@ -91,7 +113,11 @@ const About = () => {
               <AiOutlinePlus className="text-3xl" />
             )}
           </button>
-          {accordionState.floraFauna && (
+          <div
+            className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${
+              accordionState.floraFauna ? "max-h-screen" : "max-h-0"
+            }`}
+          >
             <div className="p-4 text-2xl bg-gray-50 dark:bg-gray-900 rounded-b-lg shadow-md">
               <ul className="list-disc list-inside">
                 <li>
@@ -99,8 +125,7 @@ const About = () => {
                   Multiflora Rose.
                 </li>
                 <li>
-                  Fauna: Star-nose Mole and the Little Brown Bat, among
-                  others.
+                  Fauna: Star-nose Mole and the Little Brown Bat, among others.
                 </li>
               </ul>
               <p className="mt-4">
@@ -108,7 +133,7 @@ const About = () => {
                 creating a harmonious balance of nature.
               </p>
             </div>
-          )}
+          </div>
         </div>
         <div className="mb-4">
           <button
@@ -122,7 +147,11 @@ const About = () => {
               <AiOutlinePlus className="text-3xl" />
             )}
           </button>
-          {accordionState.heritageLegacy && (
+          <div
+            className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${
+              accordionState.heritageLegacy ? "max-h-screen" : "max-h-0"
+            }`}
+          >
             <div className="p-4 text-2xl bg-gray-50 dark:bg-gray-900 rounded-b-lg shadow-md">
               <p>
                 The woodland is a testament to the natural history of the
@@ -130,7 +159,7 @@ const About = () => {
                 to the rich narrative of this thriving ecosystem.
               </p>
             </div>
-          )}
+          </div>
         </div>
       </div>
 
