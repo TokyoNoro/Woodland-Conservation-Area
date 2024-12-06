@@ -1,6 +1,5 @@
-//Author Kunal Singla(A00461346), Cole Turner (A00469026)/Author: Bahnu Prakash (A00468530)
-
-//Purpose: This file represents a componet to display flora fauna fungi
+//Authors: Kunal Singla(A00461346), Cole Turner (A00469026)/Author: Bahnu Prakash (A00468530)
+//Purpose: This file represents a componet to display a flora fauna fungi page.
 
 import React, { useState } from 'react';
 import redMaple from '../assets/download-4.jpg';
@@ -10,6 +9,7 @@ import birchImage from '../assets/download-7.jpg';
 import chipmunk from '../assets/download-8.jpg';
 
 // Sample data for Flora, Fauna, and Fungi
+// Authors: Kunal Singla, Cole Turner
 const data = [
   {
     name: 'Red Maple', // Name of the item

@@ -1,10 +1,10 @@
-// Author: Lakshay Bansal (A00467478) andd Marko Ostrovitsa (A00448932)
+// Authors: Lakshay Bansal (A00467478), Marko Ostrovitsa (A00448932)
 // Purpose: To display the Contact section of the Woodland Conservation website
 import React from "react";
 import dayBackground from "../assets/forest1.png"; // Daytime forest image
 import nightBackground from "../assets/nightforest.png"; // Nighttime forest image
 import { FaTree, FaLeaf, FaSeedling, FaMapMarkedAlt } from "react-icons/fa";
-import { BsPeopleFill, BsArrowRightCircle } from "react-icons/bs";
+import { BsArrowRightCircle } from "react-icons/bs";
 
 const Homepage = ({ dark }) => {
   return (

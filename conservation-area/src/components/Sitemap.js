@@ -1,6 +1,7 @@
 // Authors:
-// Bhanu Prakash(A00468530) - Responsible for handling the 'Get Directions' functionality
-// Cole(A00469026) - Responsible for handling  map interaction
+// Bhanu Prakash(A00468530) - Responsible for handling the 'Get Directions' functionality.
+// Cole Turner (A00469026) - Responsible for map interction, UI design, TailWind CSS.
+// Purpose: This file represents a site map component for the conservation area. 
 
 import React, { useState } from 'react';
 import { MapContainer, ImageOverlay, Marker, Popup } from 'react-leaflet';
@@ -28,11 +29,11 @@ const SiteMap = () => {
 
   // List of Points of Interest (POI) with their locations and icons
   const pointsOfInterest = [
-    { id: 1, name: 'Trailhead', position: [540, 40], icon: trailHead, googlePosition: { lat: 44.625028, lng: -63.921417 } },
-    { id: 2, name: 'Farmhouse Foundation', position: [430, 200], icon: farm, googlePosition: { lat: 44.625833, lng: -63.920972 } },
-    { id: 3, name: 'Well', position: [485, 40], icon: well, googlePosition: { lat: 44.624022, lng: -63.920028 } },
-    { id: 4, name: 'Sitting Area', position: [360, 240], icon: sitting, googlePosition: { lat: 44.625028, lng: -63.920417 } },
-    { id: 5, name: 'Coastal Yellow Birch', position: [235, 465], icon: birch, googlePosition: { lat: 44.624000, lng: -63.920056 } }
+    { id: 1, name: 'Trailhead', position: [540, 40], icon: trailHead, offset: [45, 95], googlePosition: { lat: 44.625028, lng: -63.921417 } },
+    { id: 2, name: 'Farmhouse Foundation', position: [430, 200], icon: farm, offset: [0,0], googlePosition: { lat: 44.625833, lng: -63.920972 } },
+    { id: 3, name: 'Well', position: [485, 40], icon: well, offset: [50, 70], googlePosition: { lat: 44.624022, lng: -63.920028 } },
+    { id: 4, name: 'Sitting Area', position: [360, 240], icon: sitting, offset: [0,0], googlePosition: { lat: 44.625028, lng: -63.920417 } },
+    { id: 5, name: 'Coastal Yellow Birch', position: [235, 465], icon: birch, offset: [0,0], googlePosition: { lat: 44.624000, lng: -63.920056 } }
   ];
 
   // Function to handle "Get Directions" button click
@@ -65,12 +66,13 @@ const SiteMap = () => {
 
       <MapContainer
         bounds={bounds}
-        style={{ height: '540px', width: '100%', maxWidth: '630px' }}
+        style={{ height: '545px', width: '100%', maxWidth: '630px' }}
         crs={L.CRS.Simple}
         zoomControl={false}
         scrollWheelZoom={false}
         doubleClickZoom={false}
         dragging={false}
+        maxBounds={bounds}
       >
         {/* Image overlay for the map */}
         <ImageOverlay url={rewildingBirch} bounds={bounds} />
@@ -78,7 +80,7 @@ const SiteMap = () => {
         {/* Render Points of Interest markers */}
         {pointsOfInterest.map((poi) => (
           <Marker key={poi.id} position={poi.position} icon={L.icon({ iconUrl: poi.icon, iconSize: [48, 48], iconAnchor: [24, 24], popupAnchor: [0, -10] })}>
-            <Popup direction="bottom">
+            <Popup direction="bottom" autoPan={false} offset={poi.offset}>
               <strong>{poi.name}</strong>
               <br />
               {/* Button to get directions to the POI */}
